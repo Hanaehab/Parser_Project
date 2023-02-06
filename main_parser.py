@@ -2,15 +2,15 @@ import parsers.dimensions_parser as dimensions_parser
 import parsers.spacing_parser as spacing_parser
 import parsers.enclosure_parser as enclosure_parser
 
-from variables import mapOfLayers
+from globals import mapOfLayers
 
 # calling the methods to add the values in the map
 dimensions_parser.addDimensions()
 spacing_parser.addSpacings()
-# enclosure_parser.addEnclosure()
+enclosure_parser.addEnclosure()
 
 # print(mapOfLayers['VIA0i'].vias[1].spacings[1])
-print(mapOfLayers['VIA0i'].vias)
+# print(mapOfLayers['VIA0i'].vias)
 
 
 # writing the map values into a text file
@@ -25,9 +25,9 @@ with open("variable_output.txt", 'w') as file:
         for via in value.vias:
 
             file.write("VARIABLE " + via.name + "_WIDTH " +
-                       str(via.width) + "  //" + via.size_rule)
+                       str(via.width) + "  //" + via.sizeRule)
             file.write("VARIABLE " + via.name + "_LENGTH " +
-                       str(via.length) + "  //" + via.size_rule)
+                       str(via.length) + "  //" + via.sizeRule)
             file.write('\n')
 
         # print spacings
@@ -38,18 +38,18 @@ with open("variable_output.txt", 'w') as file:
                                "_SHORTEDGE_SPACE " + str(spacing.shortEdge_space))
                     file.write('\n')
                     file.write("VARIABLE " + via.name + "_" + spacing.via_name +
-                               "_SHORTEDGE_SPACE_PRL " + str(spacing.shortEdge_space_PRL))
+                               "_SHORTEDGE_SPACE_PRL " + str(spacing.shortEdge_spacePRL))
                     file.write('\n')
                     file.write("VARIABLE " + via.name + "_" + spacing.via_name +
                                "_LONGEDGE_SPACE " + str(spacing.longEdge_space))
                     file.write('\n')
                     file.write("VARIABLE " + via.name + "_" + spacing.via_name +
-                               "_LONGEDGE_SPACE_PRL " + str(spacing.longEdge_space_PRL))
+                               "_LONGEDGE_SPACE_PRL " + str(spacing.longEdge_spacePRL))
                 else:
                     file.write("VARIABLE " + via.name + "_" +
                                spacing.via_name + "_SPACE " + str(spacing.space))
                     file.write('\n')
                     file.write("VARIABLE " + via.name + "_" +
-                               spacing.via_name + "_SPACE_PRL " + str(spacing.space_PRL))
+                               spacing.via_name + "_SPACE_PRL " + str(spacing.spacePRL))
                 file.write('\n\n')
             file.write('\n')

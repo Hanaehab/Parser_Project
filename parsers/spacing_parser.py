@@ -1,5 +1,5 @@
 import re
-from variables import mapOfLayers
+from globals import mapOfLayers
 from classes.spacing import SpacingBar, Spacing
 
 

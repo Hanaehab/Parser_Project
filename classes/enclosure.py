@@ -1,5 +1,5 @@
 class enclosure:
     metalWidth = ""
-    short_side = 0.0
-    long_side = 0.0
+    shortSide = 0.0
+    longSide = 0.0
     rule = ""

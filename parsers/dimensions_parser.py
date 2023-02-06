@@ -1,4 +1,4 @@
-from variables import conventions, mapOfLayers
+from globals import conventions, mapOfLayers
 from classes.layer import Layer
 from classes.via import Via
 import itertools
@@ -20,6 +20,7 @@ def addDimensions():
             dimensions.clear()
             ruleName = line.split()[0] + '\n'
             variableName = conventions[line.split()[0].split('.')[0]]
+            # print(f"variable name in map of layers is {variableName}")
 
             mapOfLayers[variableName] = Layer(variableName)
 

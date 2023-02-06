@@ -2,19 +2,19 @@ class Via:
     name = " "
     width = 0.0
     length = 0.0
-    size_rule = ""
-    lower_enclosure = []
-    upper_enclosure = []
+    sizeRule = ""
+    lowerEnclosures = []
+    upperEnclosures = []
     spacings = []
 
     def __init__(self,name, width, length, size_rule):
         self.name = name
         self.width = width
         self.length = length
-        self.size_rule = size_rule
-        self.lower_enclosure = []
-        self.upper_enclosure = []
+        self.sizeRule = size_rule
+        self.lowerEnclosures = []
+        self.upperEnclosures = []
         self.spacings = []
 
     def __str__(self):
-        return f"{self.name} {self.width} {self.length} {self.size_rule} {self.spacings}"
+        return f"{self.name} {self.width} {self.length} {self.sizeRule} {self.spacings}"
