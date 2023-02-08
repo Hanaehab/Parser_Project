@@ -25,9 +25,10 @@ with open("variable_output.txt", 'w') as file:
         for via in value.vias:
 
             file.write("VARIABLE " + via.name + "_WIDTH " +
-                       str(via.width) + "  //" + via.sizeRule)
+                       str(via.width) + "  //" + via.ruleName + '\n')
+
             file.write("VARIABLE " + via.name + "_LENGTH " +
-                       str(via.length) + "  //" + via.sizeRule)
+                       str(via.length) + "  //" + via.ruleName + '\n')
             file.write('\n')
 
         # print spacings
@@ -53,3 +54,9 @@ with open("variable_output.txt", 'w') as file:
                                spacing.via_name + "_SPACE_PRL " + str(spacing.spacePRL))
                 file.write('\n\n')
             file.write('\n')
+
+file.close()
+
+for i in mapOfLayers['VIA0i'].vias:
+    for x in i.lowerEnclosures:
+        print(x)

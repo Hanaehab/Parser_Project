@@ -18,8 +18,8 @@ def addDimensions():
         for line in file:
             flag = 0
             dimensions.clear()
-            ruleName = line.split()[0] + '\n'
-            variableName = conventions[line.split()[0].split('.')[0]]
+            ruleName = line.split()[0]
+            variableName = conventions[ruleName.split('.')[0]]
             # print(f"variable name in map of layers is {variableName}")
 
             mapOfLayers[variableName] = Layer(variableName)
