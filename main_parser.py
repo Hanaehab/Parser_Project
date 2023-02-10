@@ -57,6 +57,6 @@ with open("variable_output.txt", 'w') as file:
 
 file.close()
 
-for i in mapOfLayers['VIA0i'].vias:
-    for x in i.lowerEnclosures:
-        print(x)
+for via in mapOfLayers['VIA0i'].vias:
+    for enclosuer in via.lowerEnclosures:
+        print(enclosuer)

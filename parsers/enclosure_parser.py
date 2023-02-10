@@ -52,7 +52,7 @@ def getLayerDimension(line):
     # x = layerDimensions.group()[layerDimensions.group().find("[") + 1 :-1]
     # print(x)
 
-    metalDimensions = re.findall(r'(\d+\.\d+)', regexOfDimensions.group())
+    metalDimensions = re.findall(r'(\d+(?:\.\d+)?)', regexOfDimensions.group())
 
     # layerDimension = [float(number) for number in layerDimension]
 
@@ -72,7 +72,23 @@ def getLayerDimension(line):
     else:
         return metalDimensions[0] + " " + metalDimensions[1]
 
+def getEnclosureDimensions(line):
+    if (line.find("square") > 0):
+        regexOfEnclosures = re.search(r'with the other 2\s*(opposite)?\s*sides(.*)', line)
+        
+        # Regex to get the part that have the dimensions only (to ignore the '2' in the "2 sides")
+        regexOfEnclosures = regexOfEnclosures.group()[regexOfEnclosures.group().find("sides"):]
+        shortAndLongSides = re.findall(r'(\d+(?:\.\d+)?)', regexOfEnclosures)
 
+    elif (line.find("rectangular") > 0):
+        regexOfEnclosures = re.search(r'with the other 2 long sides(.*)', line)
+        
+        # Regex to get the part that have the dimensions only (to ignore the '2' in the "2 sides")
+        regexOfEnclosures = regexOfEnclosures.group()[regexOfEnclosures.group().find("sides"):]
+        shortAndLongSides = re.findall(r'(\d+(?:\.\d+)?)', regexOfEnclosures)
+    
+    shortAndLongSides = [float(i) for i in shortAndLongSides]
+    return shortAndLongSides
 
 def addEnclosure():
 
@@ -83,25 +99,34 @@ def addEnclosure():
             layer = line.split('.')[0]
             layerName = conventions[layer]
 
-            output = ""
-            typeOfVia = getTypeOfVia(line = line, layerName = layerName)
-            output += typeOfVia
+            typeOfVia = getTypeOfVia(line=line, layerName=layerName)
+
+            metalPosition = getMetalPosistion(line=line)
+
+            metalDimensions = getLayerDimension(line=line)
+
+            shortAndLongSides = getEnclosureDimensions(line = line)
+
+            # With no alternative values
+            if len(shortAndLongSides) == 2:
+                longSide = shortAndLongSides[0]
+                shortSide = shortAndLongSides[1]
+                enc = enclosure.Enclosure(typeOfVia=typeOfVia, metalWidth=metalDimensions,
+                                     metalPosition=metalPosition, ruleName=ruleName, shorSide=shortSide, longSide=longSide)
+
+            # With alternative values
+            elif len(shortAndLongSides) == 4:
+                longSide = shortAndLongSides[0]
+                altLongSide = shortAndLongSides[1]
+                shortSide = shortAndLongSides[2]
+                altShortSide = shortAndLongSides[3]
+                enc = enclosure.Enclosure(typeOfVia=typeOfVia, metalWidth=metalDimensions,
+                                     metalPosition=metalPosition, ruleName=ruleName, shorSide=shortSide, longSide=longSide, altLongSide=altLongSide, altShortSide=altShortSide)
             
-            metalPosition = getMetalPosistion(line = line)
-            output += " " + metalPosition + " width "
 
-            metalDimensions = getLayerDimension(line = line)
-            output += metalDimensions
-
-            # print(output)
-
-            en = enclosure.Enclosure(typeOfVia = typeOfVia, metalWidth = metalDimensions, metalPosition = metalPosition, ruleName = ruleName, shorSide = 0.0, longSide = 0.0)
-            # print(en)
             for via in mapOfLayers[layerName].vias:
                 if via.name == typeOfVia:
                     if metalPosition == "M_LOWER":
-                        via.lowerEnclosures.append(en)
+                        via.lowerEnclosures.append(enc)
                     elif metalPosition == "M_UPPER":
-                        via.upperEnclosures.append(en)
-
-
+                        via.upperEnclosures.append(enc)
