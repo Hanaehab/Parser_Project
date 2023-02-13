@@ -1,7 +1,12 @@
 from globals import conventions, mapOfLayers
-from classes.layer import Layer
+from classes.layer import ViaLayer
 from classes.via import Via
 import itertools
+import pymongo
+
+myclient = pymongo.MongoClient("mongodb://localhost:27017")
+mydb = myclient["test"]
+mycol = mydb["parser"]
 
 # Variables to count how many sqaures and how many bars
 squareCounter = 0
@@ -21,8 +26,12 @@ def addDimensions():
             ruleName = line.split()[0] + '\n'
             variableName = conventions[line.split()[0].split('.')[0]]
             # print(f"variable name in map of layers is {variableName}")
+             
 
-            mapOfLayers[variableName] = Layer(variableName)
+            mapOfLayers[variableName] = ViaLayer(variableName)
+            # mycol.update_one(mapOfLayers[variableName].__dict__ , upsert = True)
+            # serach if it exists and updates else creates a new one
+            mycol.replace_one({'name': variableName}, mapOfLayers[variableName].__dict__, upsert=True) 
 
             for word in line.split():
 
@@ -84,3 +93,4 @@ def getDimensions(dimension, layerVias, variableName):
         barCounter += 1
 
     layerVias.append(via)
+    mycol.update_one({'name': variableName}, {'$push': {'vias': via.__dict__}})

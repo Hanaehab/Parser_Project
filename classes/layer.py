@@ -1,4 +1,4 @@
-class Layer:
+class ViaLayer:
     vias = []
     name = " "
 

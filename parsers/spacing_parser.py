@@ -1,7 +1,10 @@
-import re
 from globals import mapOfLayers
 from classes.spacing import SpacingBar, Spacing
+import pymongo
 
+myclient = pymongo.MongoClient("mongodb://localhost:27017")
+mydb = myclient["test"]
+mycol = mydb["parser"]
 
 def addSpacings():
     global variableCombinations
@@ -24,4 +27,6 @@ def addSpacings():
                     spacing = Spacing(value.vias[j].name, 0.0, "", "")
                     variableCombinations.append(spacing)
 
+                mycol.update_one({'name': key, f'vias.{i}.name' : value.vias[i].name}, {'$push': {f'vias.{i}.spacings': spacing.__dict__}})
+            
             value.vias[i].spacings = variableCombinations
