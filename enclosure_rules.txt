@@ -1,2 +1,0 @@
-VIA0.EN.31.12.T Enclosure of square VIA0 [width = 14.0] by Lower_Metal [width >= 0.0140 mm] for 2 opposite sides with the other 2 sides >= 0.0250 mm >= 0.0600
-VIA0.EN.32.1.T short side enclosure of rectangular VIA0 [width/length = 13.0/15.0 mm] by Lower_Metal [ 0.012 < width <= 0.013 mm] with the other 2 long sides >= 0 mm >= 0.0300

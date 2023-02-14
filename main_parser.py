@@ -1,8 +1,11 @@
 import parsers.dimensions_parser as dimensions_parser
 import parsers.spacing_parser as spacing_parser
 import parsers.enclosure_parser as enclosure_parser
-
+import preprocessing.N3_preprocessing as preprocessing
 from globals import mapOfLayers
+
+# Preprocessing (N3)
+preprocessing.n3Preprocessing()
 
 # calling the methods to add the values in the map
 dimensions_parser.addDimensions()
@@ -14,7 +17,7 @@ enclosure_parser.addEnclosure()
 
 
 # writing the map values into a text file
-with open("variable_output.txt", 'w') as file:
+with open("output_files/variable_output.txt", 'w') as file:
 
     for key, value in mapOfLayers.items():
 
@@ -57,6 +60,13 @@ with open("variable_output.txt", 'w') as file:
 
 file.close()
 
-for via in mapOfLayers['VIA0i'].vias:
-    for enclosuer in via.lowerEnclosures:
-        print(enclosuer)
+# for via in mapOfLayers['VIA0i'].vias:
+#     for enclosuer in via.lowerEnclosures:
+#         print(enclosuer)
+
+encOutput = open("output_files/enclosure_output.txt", 'w')
+for key in mapOfLayers.keys():
+    for via in mapOfLayers[key].vias:
+        for enclosuer in via.lowerEnclosures:
+            print(enclosuer)
+            encOutput.write(str(enclosuer) + "\n")

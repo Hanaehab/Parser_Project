@@ -1,6 +1,33 @@
+# Constant map
 conventions = {
     "VIA0": "VIA0i",
-    "VIAxa": "Vxa"
+    "VIAxa": "Vxa",
+    "VIAxb": "Vxb",
+    "VIAxc": "Vxc",
+    "VIAy": "Vy",
+    "VIAya": "Vya",
+    "VIAyy": "Vyy",
+    "VIAz": "Vz",
+    "AP": "RV"
+}
+
+numberOfVias = {
+    "VIA0" : ["VIA0", "VIA0i"],
+    "VIA1" : ["VIAxa", "Vxa"],
+    "VIA2" : ["VIAxb", "Vxb"],
+    "VIA3" : ["VIAxc", "Vxc"],
+    "VIA4" : ["VIAya", "Vya"],
+    "VIA5" : ["VIAy", "Vy"],
+    "VIA6" : ["VIAy", "Vy"],
+    "VIA7" : ["VIAy", "Vy"],
+    "VIA8" : ["VIAy", "Vy"],
+    "VIA9" : ["VIAy", "Vy"],
+    "VIA10" : ["VIAyy", "Vyy"],
+    "VIA11" : ["VIAyy", "Vyy"],
+    "VIA12" : ["VIAz", "Vz"],
+    "VIA13" : ["VIAz", "Vz"],
+    "VIA14" : ["VIAz", "Vz"],
+    "VIA15" : ["AP", "RV"],
 }
 
 mapOfLayers = {}
@@ -53,18 +80,4 @@ mapOfLayers = {}
 #             },
 #         ]
 #     }
-# }
-
-
-
-# mapOfSizes = {}
-# mapOfSizes = {
-#   'VIA0i' = {
-#        (12,12) : 'VIA0i'
-#        (14,14) : 'VIA0iLRG' 
-#       }
-#   'Vxa' = {
-#        (12,12) : 'Vxa'
-#        (14,14) : 'VxaLRG' 
-#       }
 # }

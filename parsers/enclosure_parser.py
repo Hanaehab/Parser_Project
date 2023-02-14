@@ -92,12 +92,13 @@ def getEnclosureDimensions(line):
 
 def addEnclosure():
 
-    with open('enclosure_rules.txt', 'r') as file:
+    with open('files/enclosure_rules.txt', 'r') as file:
         for line in file:
 
             ruleName = line.split()[0]
-            layer = line.split('.')[0]
+            layer = ruleName.split('.')[0]
             layerName = conventions[layer]
+            # print(layerName)
 
             typeOfVia = getTypeOfVia(line=line, layerName=layerName)
 

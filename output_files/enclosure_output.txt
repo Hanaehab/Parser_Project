@@ -1,0 +1,3 @@
+VIA0iBAR M_LOWER width 0.013 0.024 enc 0.0005 0.031 //VIA0.EN.32.1.2.T
+VIA0iLRG2 M_LOWER width less 0.013 enc 0.0 0.027 //VIA0.EN.31.1.T
+Vz M_LOWER width 0.061 enc 0.01 0.055 //VIAz.EN.1.1.T
