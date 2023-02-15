@@ -3,6 +3,19 @@ from classes import enclosure
 import re
 
 
+def getLayerName(ruleName):
+    layer = ruleName.split('.')[0]
+    if layer.find("VIA") >= 0:
+        layerName = conventions2[layer[layer.find("VIA")+3:]]
+    elif layer.find("M") >= 0:
+        if layer.find("M1") >= 0:
+            layerName= "VIA0i"
+        else:
+            layerName = conventions2[layer[layer.find("M")+1:]]
+    
+    return layerName
+
+
 def getTypeOfVia(line, layerName):
     # If we found "square" in the line
     if (line.find("square") > 0):
@@ -44,15 +57,19 @@ def getMetalPosistion(line):
         return "M_UPPER"
 
 
-def getLayerDimension(line):
+def getLayerDimension(line, metalPosition):
 
-    regexOfDimensions = re.search(r'by Lower_Metal\s*\[.*\]', line)
+    if metalPosition == "M_LOWER":
+        regexOfDimensions = re.search(r'by Lower_Metal\s*\[.*\]', line)
+    else:
+        regexOfDimensions = re.search(r'by M\d+\s*\[.*\]', line)
 
     # If we want to save the string of the dimensions
     # x = layerDimensions.group()[layerDimensions.group().find("[") + 1 :-1]
     # print(x)
 
-    metalDimensions = re.findall(r'(\d+(?:\.\d+)?)', regexOfDimensions.group())
+    metalDimensions = re.findall(r'(\d+(?:\.\d+)?)', regexOfDimensions.group()[5:])
+    # print(metalDimensions)
 
     # layerDimension = [float(number) for number in layerDimension]
 
@@ -96,17 +113,19 @@ def addEnclosure():
         for line in file:
 
             ruleName = line.split()[0]
-            layer = ruleName.split('.')[0]
-            layerName = conventions[layer]
-            # print(layerName)
+            layerName = getLayerName(ruleName=ruleName)
 
             typeOfVia = getTypeOfVia(line=line, layerName=layerName)
+            # print(f"type of via is {typeOfVia}")
 
             metalPosition = getMetalPosistion(line=line)
-
-            metalDimensions = getLayerDimension(line=line)
+            try:
+                metalDimensions = getLayerDimension(line=line, metalPosition=metalPosition)
+            except:
+                print("Metal dimension function has an error")
 
             shortAndLongSides = getEnclosureDimensions(line = line)
+            # print(shortAndLongSides)
 
             # With no alternative values
             if len(shortAndLongSides) == 2:
@@ -124,6 +143,8 @@ def addEnclosure():
                 enc = enclosure.Enclosure(typeOfVia=typeOfVia, metalWidth=metalDimensions,
                                      metalPosition=metalPosition, ruleName=ruleName, shorSide=shortSide, longSide=longSide, altLongSide=altLongSide, altShortSide=altShortSide)
             
+            else:
+                print("there is an error on creating an enclosure object")
 
             for via in mapOfLayers[layerName].vias:
                 if via.name == typeOfVia:
