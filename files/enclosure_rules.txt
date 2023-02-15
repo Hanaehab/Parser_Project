@@ -1,3 +1,10 @@
-VIA0.EN.31.1.T Enclosure of square VIA0 [width = 0.0260 um] by Lower_Metal [width < 0.013 um] for 2 opposite sides with the other 2 sides >= 0 um >= 0.0270
+VIA0.EN.31.1.T Enclosure of square VIA0 [width = 0.020 um] by Lower_Metal [width < 0.013 um] for 2 opposite sides with the other 2 sides >= 0 um >= 0.0270
+VIA0.EN.31.1.2.T Enclosure of square VIA0 [width = 0.020 um] by Lower_Metal [0.013 um <= width < 0.024 um] for 2 opposite sides with the other 2 sides >= 0.0005 um  >= 0.0290  
+M1.EN.81.1.1.T Enclosure of square Lower_VIA [width = 0.020 um] by M1 [width < 0.039 um] for 2 opposite sides with the other 2 sides >= 0.0060 um  >= 0.0280
+M1.EN.81.2.T Enclosure of square Lower_VIA [width = 0.020 um] by M1 [0.039 um <= width < 0.042 um] for 2 opposite sides with the other 2 sides >= 0.0080 um / 0.1111 >= 0.0150 / 0.2222 
 VIA0.EN.32.1.2.T Short side enclosure of rectangular VIA0 [width/length = 0.020/0.039 um] by Lower_Metal [0.013 um <= width < 0.024 um] with the other 2 long sides >= 0.0005 um >= 0.0310
-VIAz.EN.1.1.T Enclosure of square VIAz [width = 0.043 um] by Lower_Metal [width = 0.061 um] for 2 opposite sides with the other 2 sides >= 0.0100 um DRC checks with VIA_Enclosure_Methodology >= 0.0550
+VIA0.EN.32.2.T Short side enclosure of rectangular VIA0 [width/length = 0.020/0.039 um] by Lower_Metal [0.024 um <= width < 0.026 um] with the other 2 long sides >= 0.0010 um >= 0.0310  
+M1.EN.82.1.T Short side enclosure of rectangular Lower_VIA [width/length = 0.020/0.039 um] by M1 [width < 0.039 um] with the other 2 long sides >= 0.0060 um >= 0.0290
+M1.EN.82.2.T Short side enclosure of rectangular Lower_VIA [width/length = 0.020/0.039 um] by M1 [0.039 um <= width < 0.042 um] with the other 2 long sides >= 0.0080 um >= 0.0280
+VIAy.EN.1.1.T Enclosure of square VIAy [width = 0.043 um] by Lower_Metal [width = 0.061 um] for 2 opposite sides with the other 2 sides >= 0.0100 um DRC checks with VIA_Enclosure_Methodology >= 0.0550
+VIAy.EN.1.4.T Enclosure of square VIAy [width = 0.043 um] by Lower_Metal [width = 0.076 um] for 2 opposite sides with the other 2 sides >= 0.0190 um DRC checks with VIA_Enclosure_Methodology >= 0.0230

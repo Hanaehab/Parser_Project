@@ -7,6 +7,7 @@ class Enclosure:
     ruleName = ""
 
     # If there are alternative values
+    alternativeMode = 1
     altShortSide = "none"
     altLongSide = "none"
 
@@ -20,8 +21,18 @@ class Enclosure:
         self.altLongSide = altLongSide
         self.altShortSide = altShortSide
 
+        self.alternativeMode = 1
+
     def __str__(self):
-        if self.altLongSide == "none":
+        
+        # # print(type(self.alternativeMode))
+        # if self.alternativeMode == 0:
+        #     return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} {self.shortSide} //{self.ruleName}"
+
+        # else:
+        if self.alternativeMode == 0 or self.altLongSide == "none":
+            print(f"alternative is {self.alternativeMode}")
             return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} {self.shortSide} //{self.ruleName}"
         else:
-            return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide}/{self.altLongSide} {self.shortSide}/{self.altShortSide} //{self.ruleName}"
+            print(f"alternativeaaasdasdaa is {self.alternativeMode}")
+            return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} / {self.altLongSide} {self.shortSide} / {self.altShortSide} //{self.ruleName}"

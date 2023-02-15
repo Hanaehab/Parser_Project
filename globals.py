@@ -8,26 +8,39 @@ conventions = {
     "VIAya": "Vya",
     "VIAyy": "Vyy",
     "VIAz": "Vz",
+    "RV": "AP"
+}
+
+# Map of conventions for metals
+conventions2 = {
+    "0": "VIA0i",
+    "xa": "Vxa",
+    "xb": "Vxb",
+    "xc": "Vxc",
+    "y": "Vy",
+    "ya": "Vya",
+    "yy": "Vyy",
+    "z": "Vz",
     "AP": "RV"
 }
 
 numberOfVias = {
-    "VIA0" : ["VIA0", "VIA0i"],
-    "VIA1" : ["VIAxa", "Vxa"],
-    "VIA2" : ["VIAxb", "Vxb"],
-    "VIA3" : ["VIAxc", "Vxc"],
-    "VIA4" : ["VIAya", "Vya"],
-    "VIA5" : ["VIAy", "Vy"],
-    "VIA6" : ["VIAy", "Vy"],
-    "VIA7" : ["VIAy", "Vy"],
-    "VIA8" : ["VIAy", "Vy"],
-    "VIA9" : ["VIAy", "Vy"],
-    "VIA10" : ["VIAyy", "Vyy"],
-    "VIA11" : ["VIAyy", "Vyy"],
-    "VIA12" : ["VIAz", "Vz"],
-    "VIA13" : ["VIAz", "Vz"],
-    "VIA14" : ["VIAz", "Vz"],
-    "VIA15" : ["AP", "RV"],
+    # "VIA0" : ["VIA0", "VIA0i"],
+    # "VIA1" : ["VIAxa", "Vxa"],
+    # "VIA2" : ["VIAxb", "Vxb"],
+    # "VIA3" : ["VIAxc", "Vxc"],
+    # "VIA4" : ["VIAya", "Vya"],
+    # "VIA5" : ["VIAy", "Vy"],
+    # "VIA6" : ["VIAy", "Vy"],
+    # "VIA7" : ["VIAy", "Vy"],
+    # "VIA8" : ["VIAy", "Vy"],
+    # "VIA9" : ["VIAy", "Vy"],
+    # "VIA10" : ["VIAyy", "Vyy"],
+    # "VIA11" : ["VIAyy", "Vyy"],
+    # "VIA12" : ["VIAz", "Vz"],
+    # "VIA13" : ["VIAz", "Vz"],
+    # "VIA14" : ["VIAz", "Vz"],
+    # "VIA15" : ["AP", "RV"],
 }
 
 mapOfLayers = {}
