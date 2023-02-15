@@ -1,8 +1,0 @@
-// VIA14.W.1 is checked by VIA14.W.1__VIA14.L.1__VIA14.L.2
-// VIA14.L.1 is checked by VIA14.W.1__VIA14.L.1__VIA14.L.2
-// VIA14.L.2 is checked by VIA14.W.1__VIA14.L.1__VIA14.L.2
-VIA14.W.1__VIA14.L.1__VIA14.L.2 /{ @ Width {Except SEALRING_ALL} =  0.0150 , 0.0350
-                                  @ Length of VIAxe {width = 0.015 um} =   0.0150 , 0.0400 , 0.0600
-                                  @ Length of VIAxe {width = 0.035 um} =   0.0350
-}
-
