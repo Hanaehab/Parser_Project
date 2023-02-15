@@ -28,4 +28,5 @@ class Enclosure:
         if self.alternativeMode == 0 or self.altLongSide == "none":
             return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} {self.shortSide} //{self.ruleName}"
         else:
+
             return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} / {self.altLongSide} {self.shortSide} / {self.altShortSide} //{self.ruleName}"
