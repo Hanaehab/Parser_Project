@@ -1,27 +1,27 @@
 # Constant map
 conventions = {
-    "VIA0": "VIA0i",
-    "VIAxa": "Vxa",
-    "VIAxb": "Vxb",
-    "VIAxc": "Vxc",
-    "VIAy": "Vy",
-    "VIAya": "Vya",
-    "VIAyy": "Vyy",
-    "VIAz": "Vz",
-    "RV": "Vap"
+    # "VIA0": "VIA0i",
+    # "VIAxa": "Vxa",
+    # "VIAxb": "Vxb",
+    # "VIAxc": "Vxc",
+    # "VIAy": "Vy",
+    # "VIAya": "Vya",
+    # "VIAyy": "Vyy",
+    # "VIAz": "Vz",
+    # "RV": "Vap"
 }
 
 # Map of conventions for metals
 conventions2 = {
-    "0": "VIA0i",
-    "xa": "Vxa",
-    "xb": "Vxb",
-    "xc": "Vxc",
-    "y": "Vy",
-    "ya": "Vya",
-    "yy": "Vyy",
-    "z": "Vz",
-    "AP": "RV"
+    # "0": "VIA0i",
+    # "xa": "Vxa",
+    # "xb": "Vxb",
+    # "xc": "Vxc",
+    # "y": "Vy",
+    # "ya": "Vya",
+    # "yy": "Vyy",
+    # "z": "Vz",
+    # "AP": "RV"
 }
 
 numberOfVias = {
