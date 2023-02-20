@@ -8,7 +8,7 @@ conventions = {
     "VIAya": "Vya",
     "VIAyy": "Vyy",
     "VIAz": "Vz",
-    "RV": "AP"
+    "RV": "Vap"
 }
 
 # Map of conventions for metals

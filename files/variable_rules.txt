@@ -1,6 +1,7 @@
 VIA0.W.1.T Width of VIA0 in horizontal/vertical direction (Except SEALRING_ALL) = 0.0200/0.0200, 0.0240/0.0240, 0.0200/0.0390, 0.0390/0.0200, 0.0260/0.0260, 0.0280/0.0280
-VIAxa.W.1.t Width of VIAxa in horizontal/vertical direction (Except SEALRING_ALL, BLK_M1_M2) = 0.0200/0.0200, 0.0200/0.0390, 0.0390/0.0200, 0.0260/0.0260, 0.0280/0.0280
-VIAy.W.1.T Width of VIAy in horizontal/vertical direction (Except SEALRING_ALL) = 0.0430/0.0430, 0.0430/0.1100, 0.1100/0.0430, 0.0450/0.0450, 0.0610/0.0610
-VIAy.W.1.T Width of VIAy in horizontal/vertical direction (Except SEALRING_ALL) = 0.0430/0.0430, 0.0430/0.1100, 0.1100/0.0430, 0.0450/0.0450, 0.0610/0.0610
-VIAz.W.1.T Width of VIAz in horizontal/vertical direction (Except SEALRING_ALL) = 0.4110/0.4110
-VIAz.W.1.T Width of VIAz in horizontal/vertical direction (Except SEALRING_ALL) = 0.4110/0.4110
+VIAy.W.1.T Width of VIAy in horizontal/vertical direction (Except SEALRING_ALL) = 0.0430/0.0430
+VIAy.W.1.T Width of VIAy in horizontal/vertical direction (Except SEALRING_ALL) = 0.0430/0.0430
+VIAz.W.1.T Width of VIAz in horizontal/vertical direction (Except SEALRING_ALL) = 0.0430/0.0430
+VIAz.W.1.T Width of VIAz in horizontal/vertical direction (Except SEALRING_ALL) = 0.0430/0.0430
+RV.W.1.T Width of RV in horizontal/vertical direction (Except SEALRING_ALL) = 0.0430/0.0430
+RV.W.1 Width of RV in horizontal/vertical direction (Except SEALRING_ALL) (DRC implement 0.005 um tolerance on Vertical, Horizontal, and 45-degree bent. in {INDDMY SIZING 14.4 um}) = 3.123/3.123

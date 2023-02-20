@@ -11,7 +11,7 @@ def analyzeMetalStack(typesString):
         noOfOccurrences = int(typesOccurrences[index])
         for n in range(noOfOccurrences):
             viaLayerName = "VIA" + str(counter)
-            viaTypeName = "VIA" + type.lower() if type.lower() != "RV" else "AP"
+            viaTypeName = "VIA" + type.lower() if type.lower() != "ap" else "RV"
             numberOfVias[viaLayerName] = viaTypeName
             counter += 1
 
@@ -20,6 +20,7 @@ def n3Preprocessing(ruleDeckPath):
 
     encFile = open("files/enclosure_rules.txt", "w")
     dimFile = open("files/variable_rules.txt", "w")
+    print(numberOfVias)
 
     with open(ruleDeckPath, 'r') as file:  # Path of the rule deck
         for line in file:
@@ -42,7 +43,8 @@ def n3Preprocessing(ruleDeckPath):
 
                     encFile.write(afterPreprocessing)
 
-            elif (line.find(".W.1.") > 0):
+            elif (line.find(".W.1") > 0):
+                print(line)
                 ruleName = line.split()[0]
                 viaNumber = ruleName.split('.')[0]
                 if viaNumber in numberOfVias.keys():
