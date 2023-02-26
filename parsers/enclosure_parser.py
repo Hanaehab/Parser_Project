@@ -6,13 +6,14 @@ import re
 def getLayerName(ruleName):
     layer = ruleName.split('.')[0]
     if layer.find("VIA") >= 0:
-        layerName = conventions2[layer[layer.find("VIA")+3:]]
+        layerName = conventions["VIA" + layer[layer.find("VIA")+3:]]
     elif layer.find("M") >= 0:
         if layer.find("M1") >= 0:
             layerName= "VIA0i"
         else:
-            layerName = conventions2[layer[layer.find("M")+1:]]
+            layerName = conventions["VIA" + layer[layer.find("M")+1:]]
     
+    # print(layerName)
     return layerName
 
 
@@ -147,6 +148,7 @@ def addEnclosure():
                 print("there is an error on creating an enclosure object")
 
             for via in mapOfLayers[layerName].vias:
+                # print(f"{via.name} -----> {typeOfVia}")
                 if via.name == typeOfVia:
                     if metalPosition == "M_LOWER":
                         via.lowerEnclosures.append(enc)

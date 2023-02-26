@@ -1,19 +1,36 @@
 //VIA0i
 VIA0i M_LOWER width less 0.013 enc 0.0 0.027 //VIA0.EN.31.1.T
+VIA0i M_LOWER width 0.013 0.024 enc 0.0005 0.029 //VIA0.EN.31.1.2.T
 
-VIA0i M_UPPER width 0.080 enc 0.033 0.033 //M1.EN.31.10.T
 
 VIA0iBAR M_LOWER width 0.013 0.024 enc 0.0005 0.031 //VIA0.EN.32.1.2.T
+VIA0iBAR M_LOWER width 0.024 0.026 enc 0.001 0.031 //VIA0.EN.32.2.T
 
 VIA0iBAR M_UPPER width less 0.039 enc 0.006 0.029 //M1.EN.82.1.T
+VIA0iBAR M_UPPER width 0.039 0.042 enc 0.008 0.028 //M1.EN.82.2.T
+
+
+
+//Vxa
+
+Vxa M_UPPER width less 0.039 enc 0.006 0.028 //Mxa.EN.81.1.1.T
+
 
 
 
 //Vy
+Vy M_LOWER width 0.061 enc 0.01 0.055 //VIAy.EN.1.1.T
+Vy M_LOWER width 0.076 enc 0.019 0.023 //VIAy.EN.1.4.T
+
+Vy M_UPPER width 0.039 0.042 enc 0.008 0.015 //My.EN.81.2.T
+
+
 
 
 //Vz
-Vz M_LOWER width 0.061 enc 0.01 0.055 //VIAz.EN.1.1.T
+
+
+//Vxb
 
 
 //Vap

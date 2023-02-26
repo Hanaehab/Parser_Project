@@ -43,6 +43,24 @@ numberOfVias = {
     # "VIA15" : ["AP", "RV"],
 }
 
+metalNumbers = {
+    # 'M1': 'M1', 
+    # 'M2': 'Mxa', 
+    # 'M3': 'Mxb', 
+    # 'M4': 'Mxc', 
+    # 'M5': 'Mya', 
+    # 'M6': 'My', 
+    # 'M7': 'My', 
+    # 'M8': 'My', 
+    # 'M9': 'My', 
+    # 'M10': 'My', 
+    # 'M11': 'Myy', 
+    # 'M12': 'Myy', 
+    # 'M13': 'Mz', 
+    # 'M14': 'Mz', 
+    # 'M15': 'Mz'
+}
+
 mapOfLayers = {}
 
 # mapOfLayers = 

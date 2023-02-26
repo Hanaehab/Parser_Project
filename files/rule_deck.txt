@@ -1,7 +1,7 @@
 VIA0.EN.31.1.T { @ Enclosure of square VIA0 [width = 0.020 um] by Lower_Metal [width < 0.013 um] for 2 opposite sides with the other 2 sides >= 0 um >= 0.0270
 VIA0.EN.32.1.2.T { @ Short side enclosure of rectangular VIA0 [width/length = 0.020/0.039 um] by Lower_Metal [0.013 um <= width < 0.024 um] with the other 2 long sides >= 0.0005 um >= 0.0310
 VIA12.EN.1.1.T { @ Enclosure of square VIAz [width = 0.043 um] by Lower_Metal [width = 0.061 um] for 2 opposite sides with the other 2 sides >= 0.0100 um DRC checks with VIA_Enclosure_Methodology >= 0.0550
-M1.EN.82.1.T { @ Short side enclosure of rectangular Lower_VIA [width/length = 0.020/0.039 um] by M1 [width < 0.039 um] with the other 2 long sides >= 0.0060 um >= 0.0290
+M1.EN.82.1.T { @ Short side enclosure of rectangular Lower_VIA [width/length = 0.020/0.039 um] by M1 [width < 0.039 um] with the other 2 long sides >= 0.0060 / 0.11111111111111111 um >= 0.0290 / 0.22222222222
 M1.EN.31.10.T { @ Enclosure of square Lower_VIA [width = 0.020 um] by M1 [width = 0.080 um] for 2 opposite sides with the other 2 sides >= 0.0330 um (Except BLK_WB) >= 0.033
 DM1.EN.31.10.T { @ Enclosure of square Lower_VIA [width = 0.020 um] by M1 [width = 0.080 um] for 2 opposite sides with the other 2 sides >= 0.0330 um (Except BLK_WB) >= 0.033
 

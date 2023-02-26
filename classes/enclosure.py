@@ -29,4 +29,4 @@ class Enclosure:
             return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} {self.shortSide} //{self.ruleName}"
         else:
 
-            return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} / {self.altLongSide} {self.shortSide} / {self.altShortSide} //{self.ruleName}"
+            return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} {self.shortSide} enc {self.altLongSide} {self.altShortSide} //{self.ruleName}"
