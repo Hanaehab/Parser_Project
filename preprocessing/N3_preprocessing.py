@@ -45,18 +45,27 @@ def n3Preprocessing(ruleDeckPath):
         for line in file:
             if(re.search(r'^VIA\d*.EN.',line) or re.search(r'^M\d*.EN.',line) or re.search(r'^RV.EN.',line) or re.search(r'^AP.EN.',line) ):
                 regexp = re.compile(r'with the other 2\s*(long)?\s*sides(.*)')
-                if regexp.search(line):
+                regexp2 = re.compile(r'square|rectangular')
+                regexp3 = re.compile(r'width\s*=\s*\d+\.*\d+')
+                regexp4 = re.compile(r'width/length = (\d+(\.\d+)*)/(\d+(\.\d+)*)')
+
+                # print(regexp3.search(line))
+
+
+                if regexp.search(line) and regexp2.search(line) and (regexp3.search(line) or regexp4.search(line)):
                     ruleName = line.split()[0] # EX: M1.EN.82.1.T
                     viaNumber = ruleName.split('.')[0] # EX: M1
                     if viaNumber in numberOfVias.keys():
                         afterPreprocessing = ruleName.replace(
                             viaNumber, numberOfVias[viaNumber])
                         afterPreprocessing += line[line.find("@")+1:]
-                    else:
+                    elif viaNumber in metalNumbers:
                         afterPreprocessing = ruleName.replace(
                             viaNumber, metalNumbers[viaNumber])
                         afterPreprocessing += line[line.find("@")+1:]
                         # print(afterPreprocessing)
+                    else:
+                        afterPreprocessing = ""
                     
                     reg = re.compile(r'\(Except.*\)')
                     if reg.search(afterPreprocessing):

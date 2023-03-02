@@ -23,7 +23,11 @@ def getTypeOfVia(line, layerName):
 
         # Regex to get the length of the side of the square via
         viaDimensions = re.search(r'width\s*=\s*\d+\.*\d+', line)
-        width = float(viaDimensions.group().split('=')[1])
+        try:
+            width = float(viaDimensions.group().split('=')[1])
+        except:
+            print(f"the line is ---> {line}")
+            return "NOT FOUND"
 
         for via in mapOfLayers[layerName].vias:
             if (via.width == width and via.length == width):
@@ -37,7 +41,11 @@ def getTypeOfVia(line, layerName):
         # Regex to get the length of the sides of the rectangular via
         viaDimensions = re.search(
             r'width/length = (\d+(\.\d+)*)/(\d+(\.\d+)*)', line)
-        viaDimensions = viaDimensions.group().split()[2].split('/')
+        try:
+            viaDimensions = viaDimensions.group().split()[2].split('/')
+        except:
+            print(f"the line is ---> {line}")
+            return "NOT FOUND"
         width = float(viaDimensions[0])
         length = float(viaDimensions[1])
 
@@ -63,7 +71,7 @@ def getLayerDimension(line, metalPosition):
     if metalPosition == "M_LOWER":
         regexOfDimensions = re.search(r'by Lower_Metal\s*\[.*\]', line)
     else:
-        regexOfDimensions = re.search(r'by M\d+\s*\[.*\]', line)
+        regexOfDimensions = re.search(r'by M(\d+|.*)\s*\[.*\]', line)
 
     # If we want to save the string of the dimensions
     # x = layerDimensions.group()[layerDimensions.group().find("[") + 1 :-1]
@@ -123,6 +131,7 @@ def addEnclosure():
             try:
                 metalDimensions = getLayerDimension(line=line, metalPosition=metalPosition)
             except:
+                print(line)
                 print("Metal dimension function has an error")
 
             shortAndLongSides = getEnclosureDimensions(line = line)
