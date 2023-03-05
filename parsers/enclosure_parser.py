@@ -69,7 +69,7 @@ def getMetalPosistion(line):
 def getLayerDimension(line, metalPosition):
 
     if metalPosition == "M_LOWER":
-        regexOfDimensions = re.search(r'by Lower_Metal\s*\[.*\]', line)
+        regexOfDimensions = re.search(r'by Lower_Metal(.*)\[.*\]', line)
     else:
         regexOfDimensions = re.search(r'by M(\d+|.*)\s*\[.*\]', line)
 
