@@ -10,6 +10,7 @@ from classes.layer import Layer
 from classes.via import Via
 import itertools
 import re
+from classes.spacing_test import SpacingTest
 
 def preprocessSpacing():
 
@@ -63,13 +64,16 @@ def getLayerName(ruleName):
 
 
 def getTypeOfVia(viaDimensions, layerName):
+    # Get the type of via from the vias list inside the via layer
+    viaDimensions = set(viaDimensions)
     for via in mapOfLayers[layerName].vias:
         toCompare = set([via.width, via.length])
         if (viaDimensions == toCompare):
-            return via.name  # Type of via (Ex: VIA0i, VIA0iLRG, VIA0iLRG2)
+            return via.name # (Ex: VIA0i, VIA0iLRG, VIA0iLRG2)
 
 
 def getViasDimensions(line):
+    # Get 2 arrays of the dimensions of each via
     try:
         viaDimensions = re.findall(r'edge length = \d+\.*\d+\s*/\s*\d+\.*\d+', line)
 
@@ -79,22 +83,84 @@ def getViasDimensions(line):
         fisrtViaDimension = [float(x) for x in fisrtViaDimension]
         secondViaDimenion = [float(x) for x in secondViaDimenion]
 
-        fisrtViaDimension = set(fisrtViaDimension)
-        secondViaDimenion = set(secondViaDimenion)
-
         return fisrtViaDimension, secondViaDimenion
 
     except:
         return "NOT FOUND", "NOT FOUND"
+    
+def getRelationDirection(line):
+    
+    try:
+        direction = re.search(r'in (horizontal|vertical) direction', line)
+        if direction.group().find("vertical") > 0:
+            return "vertical"
+        else:
+            return "horizontal"
 
+    except:
+        # print(f"=====> {line}")
+        return "NOT FOUND"
+
+def getViaDirection(viaDimensions):
+    
+    if viaDimensions[0] > viaDimensions[1]:
+        return "horizontal"
+
+    elif viaDimensions[1] > viaDimensions[0]:
+        return "vertical"
+    else:
+        return "square"
+
+def getEdgeRelation(viaDirection, relationDirection):
+    if relationDirection == "NOT FOUND":
+        return "NO RELATION"
+
+    else:
+        if viaDirection == "vertical" and relationDirection == "vertical":
+            return "short Side"
+        elif viaDirection == "vertical" and relationDirection == "horizontal":
+            return "long Side"
+        elif viaDirection == "horizontal" and relationDirection == "vertical":
+            return "long Side"
+        elif viaDirection == "horizontal" and relationDirection == "horizontal":
+            return "short Side"
+        elif viaDirection == "square":
+            return "square Side"
+def getPRL(line):
+    try:
+        prlRegx = re.search(r'\[PRL.*\]', line)
+        prlValue = re.search(r'(\d+(\.\d+)?)', prlRegx.group())
+        return float(prlValue.group())
+
+    except:
+        # print(f"=====> {line}")
+        return "NOT FOUND"
 def parseSpacing():
     with open('files/spacing_rules.txt', 'r') as file:
         for line in file:
             ruleName = line.split()[0]
             layerName = getLayerName(ruleName)
+
+            # Get the relation between the two vias (horizontal or vertical) relation
+            relationDirection = getRelationDirection(line)
+
+            # Get the dimensions of each via and the type
             fisrtViaDimension, secondViaDimenion = getViasDimensions(line)
             firstViaType = getTypeOfVia(fisrtViaDimension, layerName)
             secondViaType = getTypeOfVia(secondViaDimenion, layerName)
+
+            # Get the direction of the vias from the order of their dimensions
+            firstViaDirection = getViaDirection(fisrtViaDimension)
+            secondViaDirection = getViaDirection(secondViaDimenion)
+
+            firstViaEdge =  getEdgeRelation(firstViaDirection, relationDirection)
+            secondViaEdge = getEdgeRelation(secondViaDirection, relationDirection)
+
+            prl = getPRL(line)
+            end = SpacingTest(ruleName=ruleName, firstViaType=firstViaType, secondViaType=secondViaType, firstViaEdge=firstViaEdge, secondViaEdge=secondViaEdge, relationDirection=relationDirection, PRL=prl, comment=line)
+            print(end)
+            # print(f"{firstViaDirection} =====> {secondViaDirection}")
+            # print(direction)
 
             # print(f"between {firstViaType} and {secondViaType}")
             
