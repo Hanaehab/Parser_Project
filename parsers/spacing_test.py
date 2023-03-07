@@ -1,26 +1,8 @@
-import parsers.dimensions_parser as dimensions_parser
-import parsers.spacing_parser as spacing_parser
-import parsers.enclosure_parser as enclosure_parser
-import preprocessing.N3_preprocessing as preprocessing
-import writing.writing_results as writing
-import globals
-import sys
 from globals import conventions, mapOfLayers, numberOfVias, metalNumbers
-from classes.layer import Layer
-from classes.via import Via
-import itertools
 import re
 from classes.spacing_test import SpacingTest
 
 def preprocessSpacing():
-
-    # print(globals.numberOfVias)
-    # print(globals.conventions)
-    # print(globals.metalNumbers)
-
-    # for i in mapOfLayers['Vxk'].vias:
-    #     # print(mapOfLayers['Vxk'].vias)
-    #     print(f"{i.name} --> {i.length} {i.width}")
 
     spacingFile = open("files/spacing_rules.txt", "w")
     with open('spacing_example.txt', 'r') as file:
@@ -129,12 +111,25 @@ def getEdgeRelation(viaDirection, relationDirection):
 def getPRL(line):
     try:
         prlRegx = re.search(r'\[PRL.*\]', line)
-        prlValue = re.search(r'(\d+(\.\d+)?)', prlRegx.group())
+        prlValue = re.search(r'-?\d+(?:\.\d+)?', prlRegx.group()) # PRL could be negative value
         return float(prlValue.group())
 
     except:
         # print(f"=====> {line}")
         return "NOT FOUND"
+
+def checkDiffNet(line):
+    isDiffNet = line.find("different net")
+    if isDiffNet > 0:
+        return True
+    else:
+        return False
+    
+def getSpacingValue(line):
+    listOfNumbers = re.findall(r'-?\d+(?:\.\d+)?', line)
+    # Return the last value in the line
+    return float(listOfNumbers[-1])
+
 def parseSpacing():
     with open('files/spacing_rules.txt', 'r') as file:
         for line in file:
@@ -155,10 +150,11 @@ def parseSpacing():
 
             firstViaEdge =  getEdgeRelation(firstViaDirection, relationDirection)
             secondViaEdge = getEdgeRelation(secondViaDirection, relationDirection)
-
+            spacingValue = getSpacingValue(line)
             prl = getPRL(line)
-            end = SpacingTest(ruleName=ruleName, firstViaType=firstViaType, secondViaType=secondViaType, firstViaEdge=firstViaEdge, secondViaEdge=secondViaEdge, relationDirection=relationDirection, PRL=prl, comment=line)
-            print(end)
+            isDiffNet = checkDiffNet(line)
+            record = SpacingTest(ruleName=ruleName, firstViaType=firstViaType, secondViaType=secondViaType, firstViaEdge=firstViaEdge, secondViaEdge=secondViaEdge, relationDirection=relationDirection, PRL=prl, diffNet=isDiffNet, spacingValue=spacingValue, comment=line)
+            print(record)
             # print(f"{firstViaDirection} =====> {secondViaDirection}")
             # print(direction)
 
