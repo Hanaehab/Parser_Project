@@ -6,3 +6,4 @@ VIAz.EN.32.1.2.T  Enclosure of square VIAz [width = 0.043 um] by Lower_Metal [wi
 M1.EN.82.1.T Short side enclosure of rectangular Lower_VIA [width/length = 0.020/0.039 um] by M1 [width < 0.039 um] with the other 2 long sides >= 0.0060 / 0.11111111111111111 um >= 0.0290 / 0.22222222222
 M1.EN.82.2.T Short side enclosure of rectangular Lower_VIA [width/length = 0.020/0.039 um] by M1 [width < 0.039 um] with the other 2 long sides >= 0.0080 / 0.111 um >= 0.05 / 0.5
 M1.EN.31.10.T Enclosure of square Lower_VIA [width = 0.020 um] by M1 [width = 0.080 um] for 2 opposite sides with the other 2 sides >= 0.0330 um  >= 0.033
+
