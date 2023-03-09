@@ -11,10 +11,10 @@ class Enclosure:
     altShortSide = "none"
     altLongSide = "none"
 
-    def __init__(self, typeOfVia, metalWidth, shorSide, longSide, metalPosition, ruleName, altLongSide="none", altShortSide="none"):
+    def __init__(self, typeOfVia, metalWidth, shortSide, longSide, metalPosition, ruleName, altLongSide="none", altShortSide="none"):
         self.typeOfVia = typeOfVia
         self.metalDimensions = metalWidth
-        self.shortSide = shorSide
+        self.shortSide = shortSide
         self.longSide = longSide
         self.metalPosition = metalPosition
         self.ruleName = ruleName
@@ -24,9 +24,14 @@ class Enclosure:
         self.alternativeMode = 1
 
     def __str__(self):
-        
-        if self.alternativeMode == 0 or self.altLongSide == "none":
-            return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} {self.shortSide} //{self.ruleName}"
-        else:
 
-            return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} {self.shortSide} enc {self.altLongSide} {self.altShortSide} //{self.ruleName}"
+        if self.alternativeMode == 0 or self.altLongSide == "none":
+            if len(self.ruleName.split()) > 1:
+                return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} {self.shortSide} //{self.ruleName.split()[0]} //{self.ruleName.split()[1]}"
+            else:
+                return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} {self.shortSide} //{self.ruleName}"
+        else:
+            if len(self.ruleName.split()) > 1:
+                return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} {self.shortSide} enc {self.altLongSide} {self.altShortSide} //{self.ruleName.split()[0]} //{self.ruleName.split()[1]}"
+            else:
+                return f"{self.typeOfVia} {self.metalPosition} width {self.metalDimensions} enc {self.longSide} {self.shortSide} enc {self.altLongSide} {self.altShortSide} //{self.ruleName}"
