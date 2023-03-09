@@ -1,18 +1,19 @@
 from globals import conventions, mapOfLayers, numberOfVias, metalNumbers
 import re
 from classes.spacing_test import SpacingTest
+import writing.write_to_excel as writeToExcel
 
 def preprocessSpacing():
 
+    # This file will contain the rules in clean format to parse from there (DRM format)
     spacingFile = open("files/spacing_rules.txt", "w")
+
     with open('spacing_example.txt', 'r') as file:
         for line in file:
-            if re.search(r'\.S\.',line):
-                try:
-                    ruleName = line.split()[0]
-                except:
-                    continue
-
+            
+            # Check if it a spacing rule and contains a relation between two vias
+            if re.search(r'\.S\.',line) and len(re.findall(r'\[\s*edge length', line)) == 2:
+                ruleName = line.split()[0]
                 viaNumber = ruleName.split('.')[0]
                 if viaNumber in numberOfVias.keys():
                     afterPreprocessing = ruleName.replace(
@@ -95,7 +96,7 @@ def getViaDirection(viaDimensions):
 
 def getEdgeRelation(viaDirection, relationDirection):
     if relationDirection == "NOT FOUND":
-        return "NO RELATION"
+        return "NOT FOUND"
 
     else:
         if viaDirection == "vertical" and relationDirection == "vertical":
@@ -131,6 +132,7 @@ def getSpacingValue(line):
     return float(listOfNumbers[-1])
 
 def parseSpacing():
+    finalList = []
     with open('files/spacing_rules.txt', 'r') as file:
         for line in file:
             ruleName = line.split()[0]
@@ -148,17 +150,20 @@ def parseSpacing():
             firstViaDirection = getViaDirection(fisrtViaDimension)
             secondViaDirection = getViaDirection(secondViaDimenion)
 
+            # Edge relation of each via (long side, short side, square side)
             firstViaEdge =  getEdgeRelation(firstViaDirection, relationDirection)
             secondViaEdge = getEdgeRelation(secondViaDirection, relationDirection)
+
             spacingValue = getSpacingValue(line)
             prl = getPRL(line)
             isDiffNet = checkDiffNet(line)
-            record = SpacingTest(ruleName=ruleName, firstViaType=firstViaType, secondViaType=secondViaType, firstViaEdge=firstViaEdge, secondViaEdge=secondViaEdge, relationDirection=relationDirection, PRL=prl, diffNet=isDiffNet, spacingValue=spacingValue, comment=line)
-            print(record)
-            # print(f"{firstViaDirection} =====> {secondViaDirection}")
-            # print(direction)
-
-            # print(f"between {firstViaType} and {secondViaType}")
             
+            # One row of spacing data (which includes one rule)
+            record = SpacingTest(ruleName=ruleName, firstViaType=firstViaType, secondViaType=secondViaType, firstViaEdge=firstViaEdge, secondViaEdge=secondViaEdge, relationDirection=relationDirection, PRL=prl, diffNet=isDiffNet, spacingValue=spacingValue, comment=line)
+            # print(record)
+            finalList.append(record)
+            
+    # Remove duplicate relations and writing tables in excel
+    writeToExcel.prepareAndWriteToExcel(finalList)    
             
 

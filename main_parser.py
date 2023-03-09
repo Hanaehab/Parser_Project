@@ -15,11 +15,6 @@ enclosureAltMode = sys.argv[3]
 preprocessing.analyzeMetalStack(metalStack)
 preprocessing.n3Preprocessing(ruleDeckPath = ruleDeckPath)
 
-####################################################
-
-####################################################
-
-
 # calling the methods to add the values in the map
 dimensions_parser.addDimensions()
 spacing_parser.addSpacings()

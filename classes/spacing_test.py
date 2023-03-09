@@ -7,7 +7,7 @@ class SpacingTest:
     secondViaEdge = ""
 
     relationDirection = ""
-    PRL = "NO PRL"
+    PRL = ""
     diffNet = False
     spacingValue = 0.0
     comment = ""

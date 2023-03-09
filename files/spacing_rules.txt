@@ -1,4 +1,14 @@
+VIAxk.S.51.1.T Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] >= 0.0157  
 VIAxk.S.51.2.T Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] in horizontal direction [PRL > -0.0111 um] >= 0.0157  
+VIAxk.S.51.3.T Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] in vertical direction [PRL > -0.0111 um] >= 0.0157  
+VIAxk.S.51.4.tm Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] [different net] >= 0.0240  
+VIAxk.S.51.5.tm Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] in horizontal direction [PRL > -0.0111 um, different net] >= 0.0311  
+VIAxk.S.51.6.tm Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] in vertical direction [PRL > -0.0111 um, different net] >= 0.0311  
+VIAxk.S.52.1.T Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.021/0.037 um in horizontal/vertical direction] >= 0.0440  
+VIAxk.S.52.2.T Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.021/0.037 um in horizontal/vertical direction] in vertical direction [PRL > -0.0111 um] >= 0.0630  
+VIAxk.S.52.3.T Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.021/0.037 um in horizontal/vertical direction] in horizontal direction [PRL > -0.0111 um] >= 0.0440  
+VIAxk.S.53.1.T Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.037/0.021 um in horizontal/vertical direction] >= 0.0440  
+VIAxk.S.53.2.T Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.037/0.021 um in horizontal/vertical direction] in horizontal direction [PRL > -0.0111 um] >= 0.0630  
 VIAxk.S.53.3.T Space of VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] to VIAxk [edge length = 0.037/0.021 um in horizontal/vertical direction] in vertical direction [PRL > -0.0111 um] >= 0.0440  
 VIAxk.S.54.1.T Space of VIAxk [edge length = 0.021/0.037 um in horizontal/vertical direction] to VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] >= 0.0440  
 VIAxk.S.54.2.T Space of VIAxk [edge length = 0.021/0.037 um in horizontal/vertical direction] to VIAxk [edge length = 0.021/0.021 um in horizontal/vertical direction] in vertical direction [PRL > -0.0111 um] >= 0.0630  
