@@ -25,6 +25,6 @@ spacing.preprocessSpacing()
 spacing.parseSpacing()
 ####################################################
 
-# # Writing the map values into a text file  
-# writing.writeVariableFile()
-# writing.writeEnclosureFile(enclosureAltMode=enclosureAltMode)
+# Writing the map values into a text file  
+writing.writeVariableFile()
+writing.writeEnclosureFile(enclosureAltMode=enclosureAltMode)
