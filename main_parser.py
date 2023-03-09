@@ -1,6 +1,7 @@
 import parsers.dimensions_parser as dimensions_parser
 import parsers.spacing_parser as spacing_parser
 import parsers.enclosure_parser as enclosure_parser
+import parsers.spacing_test as spacing
 import preprocessing.N3_preprocessing as preprocessing
 import writing.writing_results as writing
 import sys
@@ -19,6 +20,11 @@ dimensions_parser.addDimensions()
 spacing_parser.addSpacings()
 enclosure_parser.addEnclosure()
 
-# Writing the map values into a text file  
-writing.writeVariableFile()
-writing.writeEnclosureFile(enclosureAltMode=enclosureAltMode)
+####################################################
+spacing.preprocessSpacing()
+spacing.parseSpacing()
+####################################################
+
+# # Writing the map values into a text file  
+# writing.writeVariableFile()
+# writing.writeEnclosureFile(enclosureAltMode=enclosureAltMode)
