@@ -149,7 +149,7 @@ def addEnclosure():
                 longSide = shortAndLongSides[0]
                 shortSide = shortAndLongSides[1]
                 enc = enclosure.Enclosure(typeOfVia=typeOfVia, metalWidth=metalDimensions,
-                                          metalPosition=metalPosition, ruleName=ruleName, shorSide=shortSide, longSide=longSide)
+                                          metalPosition=metalPosition, ruleName=ruleName, shortSide=shortSide, longSide=longSide)
 
             # With alternative values
             elif len(shortAndLongSides) == 4:
@@ -158,7 +158,7 @@ def addEnclosure():
                 shortSide = shortAndLongSides[2]
                 altShortSide = shortAndLongSides[3]
                 enc = enclosure.Enclosure(typeOfVia=typeOfVia, metalWidth=metalDimensions,
-                                          metalPosition=metalPosition, ruleName=ruleName, shorSide=shortSide, longSide=longSide, altLongSide=altLongSide, altShortSide=altShortSide)
+                                          metalPosition=metalPosition, ruleName=ruleName, shortSide=shortSide, longSide=longSide, altLongSide=altLongSide, altShortSide=altShortSide)
 
             else:
                 print("there is an error on creating an enclosure object")
@@ -168,11 +168,88 @@ def addEnclosure():
                 if via.name == typeOfVia:
 
                     if metalPosition == "M_LOWER":
+                        foundDuplicate = False
+                        writeSecondRule = False
                         for lowerEnc in via.lowerEnclosures:
-                            print(lowerEnc)
-                        via.lowerEnclosures.append(enc)
+
+                            if (lowerEnc.typeOfVia == enc.typeOfVia and lowerEnc.metalDimensions == enc.metalDimensions):
+                                foundDuplicate = True
+                                shortSideToCompare = lowerEnc.shortSide
+                                longSideToCompare = lowerEnc.longSide
+                                if (shortSideToCompare < shortSide and longSideToCompare < longSide):
+                                    lowerEnc.shortSide = shortSide
+                                    lowerEnc.longSide = longSide
+                                    if (lowerEnc.altLongSide == "none"):
+                                        lowerEnc.ruleName = " " + ruleName
+                                    else:
+                                        writeSecondRule = True
+
+                                elif (shortSideToCompare < shortSide):
+                                    lowerEnc.shortSide = shortSide
+                                    writeSecondRule = True
+
+                                elif (longSideToCompare < longSide):
+                                    lowerEnc.longSide = longSide
+                                    writeSecondRule = True
+
+                                if (enc.altLongSide != "none"):
+                                    if (lowerEnc.altLongSide == "none" or lowerEnc.altShortSide < altShortSide and lowerEnc.altLongSide < altLongSide):
+                                        lowerEnc.altLongSide = altLongSide
+                                        lowerEnc.altShortSide = altShortSide
+
+                                    elif (lowerEnc.altShortSide < altShortSide):
+                                        lowerEnc.altShortSide = altShortSide
+                                        writeSecondRule = True
+
+                                    elif (lowerEnc.altLongSide < altLongSide):
+                                        lowerEnc.altLongSide = altLongSide
+                                        writeSecondRule = True
+
+                                if (writeSecondRule):
+                                    lowerEnc.ruleName += " " + ruleName
+                                break
+
+                        if (foundDuplicate == False):
+                            via.lowerEnclosures.append(enc)
+
                     elif metalPosition == "M_UPPER":
                         for upperEnc in via.upperEnclosures:
-                            print(upperEnc)
+                            if (upperEnc.typeOfVia == enc.typeOfVia and upperEnc.metalDimensions == enc.metalDimensions):
+                                foundDuplicate = True
+                                shortSideToCompare = upperEnc.shortSide
+                                longSideToCompare = upperEnc.longSide
+                                if (shortSideToCompare < shortSide and longSideToCompare < longSide):
+                                    upperEnc.shortSide = shortSide
+                                    upperEnc.longSide = longSide
+                                    if (upperEnc.altLongSide == "none"):
+                                        upperEnc.ruleName = " " + ruleName
+                                    else:
+                                        writeSecondRule = True
 
-                        via.upperEnclosures.append(enc)
+                                elif (shortSideToCompare < shortSide):
+                                    upperEnc.shortSide = shortSide
+                                    writeSecondRule = True
+
+                                elif (longSideToCompare < longSide):
+                                    upperEnc.longSide = longSide
+                                    writeSecondRule = True
+
+                                if (enc.altLongSide != "none"):
+                                    if (upperEnc.altLongSide == "none" or upperEnc.altShortSide < altShortSide and upperEnc.altLongSide < altLongSide):
+                                        upperEnc.altLongSide = altLongSide
+                                        upperEnc.altShortSide = altShortSide
+
+                                    elif (upperEnc.altShortSide < altShortSide):
+                                        upperEnc.altShortSide = altShortSide
+                                        writeSecondRule = True
+
+                                    elif (upperEnc.altLongSide < altLongSide):
+                                        upperEnc.altLongSide = altLongSide
+                                        writeSecondRule = True
+
+                                if (writeSecondRule):
+                                    upperEnc.ruleName += " " + ruleName
+                                break
+
+                        if (foundDuplicate == False):
+                            via.upperEnclosures.append(enc)
