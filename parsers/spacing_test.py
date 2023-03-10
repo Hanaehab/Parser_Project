@@ -3,32 +3,6 @@ import re
 from classes.spacing_test import SpacingTest
 import writing.write_to_excel as writeToExcel
 
-def preprocessSpacing():
-
-    # This file will contain the rules in clean format to parse from there (DRM format)
-    spacingFile = open("files/spacing_rules.txt", "w")
-
-    with open('spacing_example.txt', 'r') as file:
-        for line in file:
-            
-            # Check if it a spacing rule and contains a relation between two vias
-            if re.search(r'\.S\.',line) and len(re.findall(r'\[\s*edge length', line)) == 2:
-                ruleName = line.split()[0]
-                viaNumber = ruleName.split('.')[0]
-                if viaNumber in numberOfVias.keys():
-                    afterPreprocessing = ruleName.replace(
-                        viaNumber, numberOfVias[viaNumber])
-                    afterPreprocessing += line[line.find("@")+1:]
-                elif viaNumber in metalNumbers:
-                    afterPreprocessing = ruleName.replace(
-                        viaNumber, metalNumbers[viaNumber])
-                    afterPreprocessing += line[line.find("@")+1:]
-                    
-                else:
-                    afterPreprocessing = ""
-
-                spacingFile.write(afterPreprocessing)
-
 
 def getLayerName(ruleName):
     layer = ruleName.split('.')[0]
@@ -45,7 +19,6 @@ def getLayerName(ruleName):
     # print(layerName)
     return layerName
 
-
 def getTypeOfVia(viaDimensions, layerName):
     # Get the type of via from the vias list inside the via layer
     viaDimensions = set(viaDimensions)
@@ -53,7 +26,6 @@ def getTypeOfVia(viaDimensions, layerName):
         toCompare = set([via.width, via.length])
         if (viaDimensions == toCompare):
             return via.name # (Ex: VIA0i, VIA0iLRG, VIA0iLRG2)
-
 
 def getViasDimensions(line):
     # Get 2 arrays of the dimensions of each via
@@ -109,6 +81,7 @@ def getEdgeRelation(viaDirection, relationDirection):
             return "short Side"
         elif viaDirection == "square":
             return "square Side"
+
 def getPRL(line):
     try:
         prlRegx = re.search(r'\[PRL.*\]', line)
@@ -160,7 +133,6 @@ def parseSpacing():
             
             # One row of spacing data (which includes one rule)
             record = SpacingTest(ruleName=ruleName, firstViaType=firstViaType, secondViaType=secondViaType, firstViaEdge=firstViaEdge, secondViaEdge=secondViaEdge, relationDirection=relationDirection, PRL=prl, diffNet=isDiffNet, spacingValue=spacingValue, comment=line)
-            # print(record)
             finalList.append(record)
             
     # Remove duplicate relations and writing tables in excel

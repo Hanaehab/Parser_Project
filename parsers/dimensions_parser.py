@@ -8,7 +8,7 @@ squareCounter = 0
 barCounter = 1
 ruleName = ""                               
 
-def addDimensions():
+def parseDimensions():
 
     global squareCounter, barCounter, ruleName
     dimensions = []  # will contain lists [W,L] of all exsiting dimensions

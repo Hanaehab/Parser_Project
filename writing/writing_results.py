@@ -19,29 +19,32 @@ def writeVariableFile():
                         str(via.length) + "  //" + via.ruleName + '\n')
                 variablesFile.write('\n')
 
-            # print spacings
-            for via in value.vias:
-                for spacing in via.spacings:
-                    if via.name.find('BAR') > 0 or spacing.via_name.find('BAR') > 0:
-                        variablesFile.write("VARIABLE " + via.name + "_" + spacing.via_name +
-                                "_SHORTEDGE_SPACE " + str(spacing.shortEdge_space))
-                        variablesFile.write('\n')
-                        variablesFile.write("VARIABLE " + via.name + "_" + spacing.via_name +
-                                "_SHORTEDGE_SPACE_PRL " + str(spacing.shortEdge_spacePRL))
-                        variablesFile.write('\n')
-                        variablesFile.write("VARIABLE " + via.name + "_" + spacing.via_name +
-                                "_LONGEDGE_SPACE " + str(spacing.longEdge_space))
-                        variablesFile.write('\n')
-                        variablesFile.write("VARIABLE " + via.name + "_" + spacing.via_name +
-                                "_LONGEDGE_SPACE_PRL " + str(spacing.longEdge_spacePRL))
-                    else:
-                        variablesFile.write("VARIABLE " + via.name + "_" +
-                                spacing.via_name + "_SPACE " + str(spacing.space))
-                        variablesFile.write('\n')
-                        variablesFile.write("VARIABLE " + via.name + "_" +
-                                spacing.via_name + "_SPACE_PRL " + str(spacing.spacePRL))
-                    variablesFile.write('\n\n')
-                variablesFile.write('\n')
+        #####################################################################################################
+        # print spacings
+        #     for via in value.vias:
+        #         for spacing in via.spacings:
+        #             if via.name.find('BAR') > 0 or spacing.via_name.find('BAR') > 0:
+        #                 variablesFile.write("VARIABLE " + via.name + "_" + spacing.via_name +
+        #                         "_SHORTEDGE_SPACE " + str(spacing.shortEdge_space))
+        #                 variablesFile.write('\n')
+        #                 variablesFile.write("VARIABLE " + via.name + "_" + spacing.via_name +
+        #                         "_SHORTEDGE_SPACE_PRL " + str(spacing.shortEdge_spacePRL))
+        #                 variablesFile.write('\n')
+        #                 variablesFile.write("VARIABLE " + via.name + "_" + spacing.via_name +
+        #                         "_LONGEDGE_SPACE " + str(spacing.longEdge_space))
+        #                 variablesFile.write('\n')
+        #                 variablesFile.write("VARIABLE " + via.name + "_" + spacing.via_name +
+        #                         "_LONGEDGE_SPACE_PRL " + str(spacing.longEdge_spacePRL))
+        #             else:
+        #                 variablesFile.write("VARIABLE " + via.name + "_" +
+        #                         spacing.via_name + "_SPACE " + str(spacing.space))
+        #                 variablesFile.write('\n')
+        #                 variablesFile.write("VARIABLE " + via.name + "_" +
+        #                         spacing.via_name + "_SPACE_PRL " + str(spacing.spacePRL))
+        #             variablesFile.write('\n\n')
+        #         variablesFile.write('\n')
+        #####################################################################################################
+
 
     variablesFile.close()
 

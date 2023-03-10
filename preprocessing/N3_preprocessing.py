@@ -1,7 +1,6 @@
 from globals import *
 import re
 
-
 def analyzeMetalStack(typesString):
     numberOfVias["VIA0"] = "VIA0"
     conventions["VIA0"] = "VIA0i"
@@ -28,15 +27,19 @@ def analyzeMetalStack(typesString):
                 counter += 1
                 metalNumbers["M" + str(counter)] = "M" + type.lower()
 
-    # print(metalNumbers)
-
 
 def n3Preprocessing(ruleDeckPath):
 
-    encFile = open("files/enclosure_rules.txt", "w")
+    # This will include the enclosure rules without skipping from the rule deck
     unfilteredEncFile = open("files/unfiltered_enclosure_rules.txt", "w")
+
+    # These files will contain the preprocessed rules to parse them (DRM format)
+    encFile = open("files/enclosure_rules.txt", "w")
     dimFile = open("files/variable_rules.txt", "w")
-    dimTypesWritten = []  # to avoid writting same type multiple times
+    spacingFile = open("files/spacing_rules.txt", "w")
+
+    # To avoid writting same type multiple times
+    dimTypesWritten = []  
     encViaTypesWritten = {}
     encMetalTypesWritten = {}
 
@@ -46,6 +49,7 @@ def n3Preprocessing(ruleDeckPath):
         # by M1 [width < 0.039 um] with the other 2 long sides >= 0.0060 / 0.11111111111111111 um >= 0.0290 / 0.22222222222
 
         for line in file:
+            # Preprocess enclosure rule
             if (re.search(r'^VIA\d*.EN.', line) or re.search(r'^M\d*.EN.', line) or re.search(r'^RV.EN.', line) or re.search(r'^AP.EN.', line)):
                 regexp = re.compile(r'with the other 2\s*(long)?\s*sides(.*)')
                 regexp2 = re.compile(r'square|rectangular')
@@ -86,6 +90,7 @@ def n3Preprocessing(ruleDeckPath):
 
                     encFile.write(afterPreprocessing)
 
+            # Preprocess dimensions rule
             elif (re.search(r'^VIA\d*.W.1', line) or re.search(r'^RV.W.1', line)):
                 ruleName = line.split()[0]
                 viaNumber = ruleName.split('.')[0]
@@ -102,6 +107,26 @@ def n3Preprocessing(ruleDeckPath):
                 dimTypesWritten.append(numberOfVias[viaNumber])
                 dimFile.write(afterPreprocessing)
 
+            # Preprocess spacing rule
+            elif re.search(r'\.S\.',line) and len(re.findall(r'\[\s*edge length', line)) == 2:
+                # Check if it a spacing rule and contains a relation between two vias
+                ruleName = line.split()[0]
+                viaNumber = ruleName.split('.')[0]
+                if viaNumber in numberOfVias.keys():
+                    afterPreprocessing = ruleName.replace(
+                        viaNumber, numberOfVias[viaNumber])
+                    afterPreprocessing += line[line.find("@")+1:]
+                elif viaNumber in metalNumbers:
+                    afterPreprocessing = ruleName.replace(
+                        viaNumber, metalNumbers[viaNumber])
+                    afterPreprocessing += line[line.find("@")+1:]
+                    
+                else:
+                    afterPreprocessing = ""
+
+                spacingFile.write(afterPreprocessing)
+
     encFile.close()
     dimFile.close()
+    spacingFile.close()
     unfilteredEncFile.close()

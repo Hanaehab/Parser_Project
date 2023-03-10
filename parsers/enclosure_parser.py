@@ -122,7 +122,7 @@ def getEnclosureDimensions(line):
     return shortAndLongSides
 
 
-def addEnclosure():
+def parseEnclosure():
 
     with open('files/enclosure_rules.txt', 'r') as file:
         for line in file:
