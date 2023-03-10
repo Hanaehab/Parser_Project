@@ -124,7 +124,7 @@ def getEnclosureDimensions(line):
 
 def parseEnclosure():
 
-    with open('files/enclosure_rules.txt', 'r') as file:
+    with open('preprocessedFiles/enclosure_rules.txt', 'r') as file:
         for line in file:
 
             ruleName = line.split()[0]

@@ -106,7 +106,7 @@ def getSpacingValue(line):
 
 def parseSpacing():
     finalList = []
-    with open('files/spacing_rules.txt', 'r') as file:
+    with open('preprocessedFiles/spacing_rules.txt', 'r') as file:
         for line in file:
             ruleName = line.split()[0]
             layerName = getLayerName(ruleName)

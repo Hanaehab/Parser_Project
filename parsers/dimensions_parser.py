@@ -14,7 +14,7 @@ def parseDimensions():
     dimensions = []  # will contain lists [W,L] of all exsiting dimensions
     flag = 0  # This flag is to trace the "=" operator and get the dimensions after it
 
-    with open('files/variable_rules.txt', 'r') as file:
+    with open('preprocessedFiles/variable_rules.txt', 'r') as file:
         for line in file:
             flag = 0
             dimensions.clear()

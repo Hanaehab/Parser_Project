@@ -31,12 +31,12 @@ def analyzeMetalStack(typesString):
 def n3Preprocessing(ruleDeckPath):
 
     # This will include the enclosure rules without skipping from the rule deck
-    unfilteredEncFile = open("files/unfiltered_enclosure_rules.txt", "w")
+    unfilteredEncFile = open("preprocessedFiles/unfiltered_enclosure_rules.txt", "w")
 
     # These files will contain the preprocessed rules to parse them (DRM format)
-    encFile = open("files/enclosure_rules.txt", "w")
-    dimFile = open("files/variable_rules.txt", "w")
-    spacingFile = open("files/spacing_rules.txt", "w")
+    encFile = open("preprocessedFiles/enclosure_rules.txt", "w")
+    dimFile = open("preprocessedFiles/variable_rules.txt", "w")
+    spacingFile = open("preprocessedFiles/spacing_rules.txt", "w")
 
     # To avoid writting same type multiple times
     dimTypesWritten = []  

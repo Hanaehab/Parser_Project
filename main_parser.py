@@ -17,7 +17,7 @@ preprocessing.n3Preprocessing(ruleDeckPath=ruleDeckPath)
 
 # calling the methods to add the values in the map
 dimensions_parser.parseDimensions()
-spacing_parser.addSpacings()
+# spacing_parser.addSpacings()
 enclosure_parser.parseEnclosure()
 
 # Parsing spacing rules and writing in excel
