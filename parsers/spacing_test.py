@@ -41,7 +41,7 @@ def getViasDimensions(line):
         return fisrtViaDimension, secondViaDimenion
 
     except:
-        return "NOT FOUND", "NOT FOUND"
+        return "NOT_FOUND", "NOT_FOUND"
     
 def getRelationDirection(line):
     
@@ -54,7 +54,7 @@ def getRelationDirection(line):
 
     except:
         # print(f"=====> {line}")
-        return "NOT FOUND"
+        return "NOT_FOUND"
 
 def getViaDirection(viaDimensions):
     
@@ -67,20 +67,20 @@ def getViaDirection(viaDimensions):
         return "square"
 
 def getEdgeRelation(viaDirection, relationDirection):
-    if relationDirection == "NOT FOUND":
-        return "NOT FOUND"
+    if relationDirection == "NOT_FOUND":
+        return "NOT_FOUND"
 
     else:
         if viaDirection == "vertical" and relationDirection == "vertical":
-            return "short Side"
+            return "ShortSide"
         elif viaDirection == "vertical" and relationDirection == "horizontal":
-            return "long Side"
+            return "LongSide"
         elif viaDirection == "horizontal" and relationDirection == "vertical":
-            return "long Side"
+            return "LongSide"
         elif viaDirection == "horizontal" and relationDirection == "horizontal":
-            return "short Side"
+            return "ShortSide"
         elif viaDirection == "square":
-            return "square Side"
+            return "SquareSide"
 
 def getPRL(line):
     try:
@@ -90,7 +90,7 @@ def getPRL(line):
 
     except:
         # print(f"=====> {line}")
-        return "NOT FOUND"
+        return "NOT_FOUND"
 
 def checkDiffNet(line):
     isDiffNet = line.find("different net")
