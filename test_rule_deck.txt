@@ -7,9 +7,10 @@ VIA13.EN.1.1.T { @ Enclosure of square VIAz [width = 0.043 um] by Lower_Metal [w
 M1.EN.82.1.T { @ Short side enclosure of rectangular Lower_VIA [width/length = 0.020/0.039 um] by M1 [width < 0.039 um] with the other 2 long sides >= 0.0060 / 0.11111111111111111 um >= 0.0290 / 0.22222222222
 M1.EN.82.2.T { @ Short side enclosure of rectangular Lower_VIA [width/length = 0.020/0.039 um] by M1 [width < 0.039 um] with the other 2 long sides >= 0.0080 / 0.111 um >= 0.05 / 0.5
 M1.EN.31.10.T { @ Enclosure of square Lower_VIA [width = 0.020 um] by M1 [width = 0.080 um] for 2 opposite sides with the other 2 sides >= 0.0330 um (Except BLK_WB) >= 0.033
-
+VIA4.EN.1.4 { @ Enclosure of square VIAya [width = 0.048 um] by My or Mya [width = 0.077 um] for all sides >= 0.0230 / 0.0290
 M1.EN.31.10.T { @ Enclosure of square Lower_VIA_ca [width = 0.020 um] by M1 [width = 0.080 um] for 2 opposite sides with the other 2 sides >= 0.0330 um (Except BLK_WB) >= 0.033
 DM1.EN.31.10.T { @ Enclosure of square Lower_VIA_ca [width = 0.020 um] by M1 [width = 0.080 um] for 2 opposite sides with the other 2 sides >= 0.0330 um (Except BLK_WB) >= 0.033
+
 VIA8.S.70.43.T { @ Space of VIAxk [edge length = 0.027/0.027 um in horizontal/vertical direction] to VIAxk [edge length = 0.027/0.027 um in horizontal/vertical direction] >= 0.0335  
 VIA8.S.70.44.T { @ Space of VIAxk [edge length = 0.027/0.027 um in horizontal/vertical direction] to VIAxk [edge length = 0.027/0.027 um in horizontal/vertical direction] in horizontal direction [PRL > -0.027 um] >= 0.0710  
 VIA8.S.70.45.T { @ Space of VIAxk [edge length = 0.027/0.027 um in horizontal/vertical direction] to VIAxk [edge length = 0.027/0.027 um in horizontal/vertical direction] in vertical direction [PRL > -0.027 um] >= 0.0710  
@@ -27,6 +28,7 @@ VIA8.S.70.56.T { @ Space of VIAxk [edge length = 0.025/0.025 um in horizontal/ve
 VIA8.S.70.57.T { @ Space of VIAxk [edge length = 0.025/0.025 um in horizontal/vertical direction] to VIAxk [edge length = 0.027/0.027 um in horizontal/vertical direction] in vertical direction [PRL > -0.027 um] >= 0.0740
 
 VIA0.W.1.T { @ Width of VIA0 in horizontal/vertical direction (Except SEALRING_ALL) = 0.0200/0.0200, 0.0240/0.0240, 0.0200/0.0390, 0.0390/0.0200, 0.0260/0.0260, 0.0280/0.0280
+VIA4.W.1.T { @ Width of VIAya in horizontal/vertical direction (Except SEALRING_ALL) = 0.0200/0.0200, 0.0480/0.0480, 0.0200/0.0390, 0.0390/0.0200, 0.0260/0.0260, 0.0280/0.0280
 VIA7.W.1.T { @ Width of VIAy in horizontal/vertical direction (Except SEALRING_ALL) = 0.0210/0.0210, 0.0210/0.0370, 0.0370/0.0210, 0.0250/0.0250, 0.0270/0.0270
 VIA8.W.1.T { @ Width of VIAxk in horizontal/vertical direction (Except SEALRING_ALL) = 0.0210/0.0210, 0.0210/0.0370, 0.0370/0.0210, 0.0250/0.0250, 0.0270/0.0270  
 DVIA10.W.1.T { @ Width of VIAyy in horizontal/vertical direction (Except SEALRING_ALL) = 0.0430/0.0430

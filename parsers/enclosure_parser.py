@@ -102,21 +102,51 @@ def getLayerDimension(line, metalPosition):
 
 def getEnclosureDimensions(line):
     if (line.find("square") > 0):
-        regexOfEnclosures = re.search(
+        regexOfEnclosures1 = re.search(
             r'with the other 2\s*(opposite)?\s*sides(.*)', line)
+        regexOfEnclosures2 = re.search(r'for all sides(.*)', line)
 
-        # Regex to get the part that have the dimensions only (to ignore the '2' in the "2 sides")
-        regexOfEnclosures = regexOfEnclosures.group(
-        )[regexOfEnclosures.group().find("sides"):]
-        shortAndLongSides = re.findall(r'(\d+(?:\.\d+)?)', regexOfEnclosures)
+        if (regexOfEnclosures1):
+            # Regex to get the part that have the dimensions only (to ignore the '2' in the "2 sides")
+            regexOfEnclosures1 = regexOfEnclosures1.group(
+            )[regexOfEnclosures1.group().find("sides"):]
+            shortAndLongSides = re.findall(
+                r'(\d+(?:\.\d+)?)', regexOfEnclosures1)
+
+        elif (regexOfEnclosures2):
+            regexOfEnclosures2 = regexOfEnclosures2.group(
+            )[regexOfEnclosures2.group().find("all sides"):]
+            shortAndLongSides = re.findall(
+                r'(\d+(?:\.\d+)?)', regexOfEnclosures2)
+            if (len(shortAndLongSides) == 1):
+                shortAndLongSides.append(shortAndLongSides[0])
+            else:
+
+                shortAndLongSides.append(shortAndLongSides[0])
+                shortAndLongSides.append(shortAndLongSides[1])
 
     elif (line.find("rectangular") > 0):
         regexOfEnclosures = re.search(r'with the other 2 long sides(.*)', line)
+        regexOfEnclosures2 = re.search(r'for all sides(.*)', line)
 
-        # Regex to get the part that have the dimensions only (to ignore the '2' in the "2 sides")
-        regexOfEnclosures = regexOfEnclosures.group(
-        )[regexOfEnclosures.group().find("sides"):]
-        shortAndLongSides = re.findall(r'(\d+(?:\.\d+)?)', regexOfEnclosures)
+        if (regexOfEnclosures):
+            # Regex to get the part that have the dimensions only (to ignore the '2' in the "2 sides")
+            regexOfEnclosures = regexOfEnclosures.group(
+            )[regexOfEnclosures.group().find("sides"):]
+            shortAndLongSides = re.findall(
+                r'(\d+(?:\.\d+)?)', regexOfEnclosures)
+
+        elif (regexOfEnclosures2):
+            regexOfEnclosures2 = regexOfEnclosures2.group(
+            )[regexOfEnclosures2.group().find("all sides"):]
+            shortAndLongSides = re.findall(
+                r'(\d+(?:\.\d+)?)', regexOfEnclosures2)
+            if (len(shortAndLongSides) == 1):
+                shortAndLongSides.append(shortAndLongSides[0])
+            else:
+
+                shortAndLongSides.append(shortAndLongSides[0])
+                shortAndLongSides.append(shortAndLongSides[1])
 
     shortAndLongSides = [float(i) for i in shortAndLongSides]
     return shortAndLongSides
@@ -145,6 +175,12 @@ def parseEnclosure():
             # print(shortAndLongSides)
 
             # With no alternative values
+
+            # if len(shortAndLongSides) == 1:
+            #     longSide = shortAndLongSides[0]
+            #     shortSide = shortAndLongSides[0]
+            #     enc = enclosure.Enclosure(typeOfVia=typeOfVia, metalWidth=metalDimensions,
+            #                               metalPosition=metalPosition, ruleName=ruleName, shortSide=shortSide, longSide=longSide)
             if len(shortAndLongSides) == 2:
                 longSide = shortAndLongSides[0]
                 shortSide = shortAndLongSides[1]
@@ -162,7 +198,7 @@ def parseEnclosure():
 
             else:
                 print("there is an error on creating an enclosure object")
-
+            # print(enc)
             for via in mapOfLayers[layerName].vias:
                 # print(f"{via.name} -----> {typeOfVia}")
                 if via.name == typeOfVia:
@@ -213,6 +249,8 @@ def parseEnclosure():
                             via.lowerEnclosures.append(enc)
 
                     elif metalPosition == "M_UPPER":
+                        foundDuplicate = False
+                        writeSecondRule = False
                         for upperEnc in via.upperEnclosures:
                             if (upperEnc.typeOfVia == enc.typeOfVia and upperEnc.metalDimensions == enc.metalDimensions):
                                 foundDuplicate = True

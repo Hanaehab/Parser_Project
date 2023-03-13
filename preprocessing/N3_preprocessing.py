@@ -51,15 +51,18 @@ def n3Preprocessing(ruleDeckPath):
         for line in file:
             # Preprocess enclosure rule
             if (re.search(r'^VIA\d*.EN.', line) or re.search(r'^M\d*.EN.', line) or re.search(r'^RV.EN.', line) or re.search(r'^AP.EN.', line)):
+                
                 regexp = re.compile(r'with the other 2\s*(long)?\s*sides(.*)')
                 regexp2 = re.compile(r'square|rectangular')
                 regexp3 = re.compile(r'width\s*=\s*\d+\.*\d+')
                 regexp4 = re.compile(
                     r'width/length = (\d+(\.\d+)*)/(\d+(\.\d+)*)')
                 regexp5 = re.compile(r'\bLower_Metal\b|\bLower_VIA\b')
+                regexp6 = re.compile(r'for all sides')
 
-                if regexp.search(line) and regexp2.search(line) and (regexp3.search(line) or regexp4.search(line)) and regexp5.search(line):
 
+                if (regexp.search(line) and regexp2.search(line) and (regexp3.search(line) or regexp4.search(line)) and regexp5.search(line)) or (regexp2.search(line) and regexp6.search(line)):
+        
                     ruleName = line.split()[0]  # EX: M1.EN.82.1.T
                     viaNumber = ruleName.split('.')[0]  # EX: M1
                     if viaNumber in numberOfVias.keys():
@@ -89,7 +92,7 @@ def n3Preprocessing(ruleDeckPath):
                             toRemove.group(), "")
 
                     encFile.write(afterPreprocessing)
-
+       
             # Preprocess dimensions rule
             elif (re.search(r'^VIA\d*.W.1', line) or re.search(r'^RV.W.1', line)):
                 ruleName = line.split()[0]
