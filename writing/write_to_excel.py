@@ -1,19 +1,19 @@
-from openpyxl import Workbook
+# from openpyxl import Workbook
   
-def writeInExcel(listOfSpacing, excelName):
-    # Workbook is created
-    wb = Workbook()
-    # grab the active worksheet
-    ws = wb.active
-    # add_sheet is used to create sheet.
+# def writeInExcel(listOfSpacing, excelName):
+#     # Workbook is created
+#     wb = Workbook()
+#     # grab the active worksheet
+#     ws = wb.active
+#     # add_sheet is used to create sheet.
 
-    ws.append(["Rule", "VIA_1", "Edge_1", "VIA_2", "Edge_2", "Relation", "PRL", "Diff_Net", "Spacing", "Comment"])
+#     ws.append(["Rule", "VIA_1", "Edge_1", "VIA_2", "Edge_2", "Relation", "PRL", "Diff_Net", "Spacing", "Comment"])
 
 
-    for item in listOfSpacing:
-        writeRow(ws, item)
+#     for item in listOfSpacing:
+#         writeRow(ws, item)
 
-    wb.save(f'output_files/spacings/{excelName}.xlsx')
+#     wb.save(f'output_files/spacings/{excelName}.xlsx')
 
 
 def writeRow(ws, item):
@@ -22,7 +22,7 @@ def writeRow(ws, item):
                item.PRL, item.diffNet, item.spacingValue, item.comment])
 
 mapOfSpacings = {}
-def removeDuplicates(finalList):
+def prepareMap(finalList):
     # Removing duplicates (VIA_LRG to VIA_BAR) is equal to (VIA_BAR to VIA_LRG). So, we need just one of them
     for rule in finalList:
         if rule.firstViaType == rule.secondViaType:
@@ -56,11 +56,11 @@ def removeDuplicates(finalList):
 
 ###########################################################################################
 def writeLineInFile(file, item):
-    file.write(f"{item.ruleName} {item.firstViaType} {item.firstViaEdge} {item.secondViaType} {item.secondViaEdge} {item.relationDirection} {item.PRL} {item.diffNet} {item.spacingValue} {item.comment}")    
+    file.write(f"{item.ruleName},{item.firstViaType},{item.firstViaEdge},{item.secondViaType},{item.secondViaEdge},{item.relationDirection},{item.PRL},{item.diffNet},{item.spacingValue},{item.comment}")    
 
 def writeInFile(listOfSpacing, fileName):
-    file = open(f"output_files/spacings/{fileName}.txt", "w")
-    file.write("Rule VIA_1 Edge_1 VIA_2 Edge_2 Relation PRL Diff_Net Spacing Comment")
+    file = open(f"output_files/spacings/{fileName}.csv", "w")
+    file.write("Rule,VIA_1,Edge_1,VIA_2,Edge_2,Relation,PRL,Diff_Net,Spacing,Comment")
     file.write("\n")
 
     for item in listOfSpacing:
@@ -71,10 +71,10 @@ def writeInFile(listOfSpacing, fileName):
 ###########################################################################################
 def writeFromMap(myMap):
     for relationName in myMap.keys():
-        writeInExcel(listOfSpacing = myMap[relationName], excelName = relationName)
+        # writeInExcel(listOfSpacing = myMap[relationName], excelName = relationName)
         writeInFile(listOfSpacing=myMap[relationName], fileName=relationName)
 
 
 def prepareAndWriteToExcel(finalList):
-    removeDuplicates(finalList=finalList)
+    prepareMap(finalList=finalList)
     writeFromMap(myMap=mapOfSpacings)
